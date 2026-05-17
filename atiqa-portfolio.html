@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Atiqa Lohani — Front End Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #080d1a;
+    --navy2: #0c1220;
+    --navy3: #101828;
+    --red: #d94f3a;
+    --red-dark: #b03828;
+    --red-light: #e06050;
+    --white: #f0f4ff;
+    --muted: #8b9ab5;
+    --border: rgba(139,154,181,0.12);
+    --glow: rgba(217,79,58,0.18);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* STARS CANVAS */
+  #stars-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5%;
+    background: rgba(8,13,26,0.7);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--red);
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red-dark) !important; color: #fff !important; }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 6% 5rem;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-inner {
+    max-width: 700px;
+    z-index: 2;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    line-height: 0.92;
+    margin-bottom: 1.25rem;
+  }
+  .hero-name-first {
+    display: block;
+    font-size: clamp(5rem, 12vw, 9.5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .hero-name-last {
+    display: block;
+    font-size: clamp(4.5rem, 11vw, 8.5rem);
+    font-weight: 900;
+    font-style: italic;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.42);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+  .btn-outline {
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid rgba(240,244,255,0.35);
+    transition: border-color 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .btn-outline:hover { border-color: rgba(240,244,255,0.8); transform: translateY(-1px); }
+  /* Ghost watermark */
+  .hero-watermark {
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(7rem, 20vw, 18rem);
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1;
+    z-index: 1;
+  }
+  /* Achievements */
+  #achievements { background: var(--navy); }
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .cert-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cert-card:hover { border-color: rgba(217,79,58,0.35); transform: translateY(-3px); }
+  .cert-card:hover::before { opacity: 1; }
+  .cert-issuer {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .cert-issuer-ibm { color: #0f62fe; }
+  .cert-issuer-google { color: #4285f4; }
+  .cert-issuer-coursera { color: #0056d2; }
+  .cert-badge {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .cert-badge-ibm { background: #0f62fe; }
+  .cert-badge-google { background: #34a853; }
+  .cert-badge-coursera { background: #0056d2; }
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .cert-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .cert-type {
+    display: inline-block;
+    background: rgba(217,79,58,0.1);
+    border: 1px solid rgba(217,79,58,0.2);
+    color: #e8a49a;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .cert-verify {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    margin-top: auto;
+  }
+  .cert-verify:hover { color: var(--white); }
+
+  /* SECTION LAYOUT */
+  .hero-plus {
+    position: absolute;
+    color: rgba(139,154,181,0.25);
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 5%;
+  }
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--red);
+  }
+  .section-eyebrow span {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--navy2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.85;
+  }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .about-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .about-card-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .about-card-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .experience-bar {
+    margin-top: 1.5rem;
+    grid-column: 1 / -1;
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .exp-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+  .exp-text { font-size: 0.875rem; color: var(--muted); }
+  .exp-text strong { color: var(--white); font-weight: 500; }
+
+  /* SKILLS */
+  #skills { background: var(--navy); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .skill-group-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .skill-group-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .skill-tag {
+    background: rgba(217,79,58,0.1);
+    border: 1px solid rgba(217,79,58,0.2);
+    color: #e8a49a;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 400;
+  }
+  .skill-tag.neutral {
+    background: rgba(139,154,181,0.07);
+    border-color: rgba(139,154,181,0.15);
+    color: var(--muted);
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--navy2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover {
+    border-color: rgba(217,79,58,0.35);
+    transform: translateY(-3px);
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .project-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .project-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+    font-size: 0.85rem;
+  }
+  .project-link:hover { color: var(--white); border-color: rgba(240,244,255,0.3); }
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.75;
+    flex: 1;
+  }
+  .project-tag {
+    display: inline-block;
+    background: rgba(217,79,58,0.1);
+    border: 1px solid rgba(217,79,58,0.2);
+    color: #e8a49a;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* RESUME SECTION */
+  #resume { background: var(--navy2); }
+  .resume-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 5%;
+  }
+  .resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .resume-left .section-title { margin-bottom: 1rem; }
+  .resume-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .resume-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .resume-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .resume-highlight-item::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+  .resume-highlight-item strong { color: var(--white); font-weight: 500; }
+  .resume-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .resume-preview {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .resume-preview::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), rgba(217,79,58,0.3), transparent);
+  }
+  .resume-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .resume-preview-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .resume-preview-badge {
+    background: rgba(217,79,58,0.15);
+    border: 1px solid rgba(217,79,58,0.3);
+    color: var(--red-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .resume-preview-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .resume-preview-row:last-child { border-bottom: none; }
+  .resume-preview-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  .resume-preview-value {
+    font-size: 0.85rem;
+    color: var(--white);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .resume-preview-value.muted { color: var(--muted); }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  .contact-outer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 5%;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-left .section-title { margin-bottom: 1rem; }
+  .contact-left .section-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 900;
+  }
+  .contact-tagline {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 340px;
+  }
+  .contact-right { display: flex; flex-direction: column; gap: 0; }
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-row:first-child { border-top: 1px solid var(--border); }
+  .contact-row-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .contact-row-value {
+    font-size: 1.05rem;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-row-value:hover { color: var(--red-light); }
+  .contact-row-value .arrow {
+    font-size: 0.9rem;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .contact-row-value:hover .arrow { color: var(--red); transform: translateX(3px) translateY(-3px); }
+  .contact-send-btn {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--white);
+    color: #000;
+    padding: 1rem 2.25rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-send-btn:hover { background: #e0e8ff; transform: translateY(-1px); }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .social-link:hover { color: var(--white); border-color: rgba(240,244,255,0.3); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-inner { max-width: 100%; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .achievements-grid { grid-template-columns: 1fr; }
+    .hero-watermark { font-size: 30vw; right: -10%; }
+    .resume-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">ATI<span>Q</span>A</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#resume">CV</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-watermark">ATIQA</div>
+
+  <span class="hero-plus" style="top:28%;left:8%">+</span>
+  <span class="hero-plus" style="top:65%;left:38%">+</span>
+  <span class="hero-plus" style="top:20%;left:55%">·</span>
+  <span class="hero-plus" style="top:75%;left:62%">·</span>
+
+  <div class="hero-inner reveal">
+    <div class="hero-eyebrow">Computer Science Student · SQL &amp; Web Development</div>
+    <h1 class="hero-name">
+      <span class="hero-name-first">Atiqa</span>
+      <span class="hero-name-last">Lohani</span>
+    </h1>
+    <p class="hero-tagline">Building AI-driven and scalable web solutions</p>
+    <p class="hero-subtitle">
+      CS student with hands-on experience in AI and web,
+      building end-to-end applications using Python, C++, and JavaScript.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-outline">Contact Me →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal"><span>About Me</span></div>
+    <h2 class="section-title reveal">Turning ideas into<br/>real software.</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a <strong>Computer Science student at UET University of Engineering and Technology, Lahore</strong>, currently in my 2th semester. My work spans front-end development.</p>
+        <p>I have a strong foundation in <strong>data structures, databases, and object-oriented design</strong>. I focus on delivering scalable, real-world solutions that actually ship — not just academic exercises.</p>
+        <p>Beyond coding, I am a part of AWS Management Team.</p>
+        </div>
+      <div class="reveal">
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-num">2th</div>
+            <div class="about-card-label">Semester at COMSATS</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-num">2yr</div>
+            <div class="about-card-label">Teaching Experience</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-num">6+</div>
+            <div class="about-card-label">Projects Shipped</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-num">AWS</div>
+            <div class="about-card-label">Management Team</div>
+          </div>
+          <div class="experience-bar">
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-text"><strong>Teaching</strong> — 2 years of mentoring peers on programming &amp; career paths</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-text"><strong>AWS Management Team</strong> — Campus cloud community Member</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal"><span>Technical Skills</span></div>
+    <h2 class="section-title reveal">What I work with.</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-num">01</div>
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-num">02</div>
+        <div class="skill-group-title">Concepts</div>
+        <div class="skill-tags">
+          <span class="skill-tag">OOP</span>
+          <span class="skill-tag">Data Structures</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-num">03</div>
+        <div class="skill-group-title">Databases &amp; Backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-num">04</div>
+        <div class="skill-group-title">Tools &amp; Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Vercel</span>
+          <span class="skill-tag">LinkedIn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal"><span>Projects</span></div>
+    <h2 class="section-title reveal">Things I've built.</h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Personal Expense Tracker</div>
+          <div class="project-links">
+            <a href="https://github.com/atiqalohani/-Personal-Expense-Tracker-System" target="_blank" class="project-link" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://personal-expense-tracker-system.vercel.app/" target="_blank" class="project-link" title="Live">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">A web-based application that helps users record, manage, analyse, and visualize their daily expenses in a simple and user-friendly way.</p>
+        <span class="project-tag">Web App</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Debug Levelup</div>
+          <div class="project-links">
+            <a href="https://github.com/atiqalohani/Debug-Levelup" target="_blank" class="project-link" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://debug-levelup.vercel.app/" target="_blank" class="project-link" title="Live">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Transforms your daily debugging sessions into an interactive, quest-based experience. Track issues as quests, earn XP for every fix, level up your developer profile, and compete with your team.</p>
+        <span class="project-tag">Gamification</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Debug Quest</div>
+          <div class="project-links">
+            <a href="https://github.com/atiqalohani/Debug-Quest" target="_blank" class="project-link" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://debug-quest-mu.vercel.app/" target="_blank" class="project-link" title="Live">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Quest-based debugging experience where fixing bugs earns XP. Compete with your team, level up your profile, all without leaving your workflow. Because killing bugs should feel like an achievement.</p>
+        <span class="project-tag">Dev Tool</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Airline Reservation System</div>
+          <div class="project-links">
+            <a href="https://github.com/atiqalohani/Airline-Reservation-Management-System" target="_blank" class="project-link" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Comprehensive console-based flight booking system in C++ simulating real-world airline operations. Dual-portal architecture with separate interfaces for passengers and administrators.</p>
+        <span class="project-tag">C++ · Systems</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Snake Game</div>
+          <div class="project-links">
+            <a href="https://github.com/atiqalohani/Snake-Game" target="_blank" class="project-link" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Classic grid-based snake game demonstrating core programming concepts — loops, conditionals, and object-oriented design through real-time game logic and user interaction.</p>
+        <span class="project-tag">Game · OOP</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal"><span>Achievements</span></div>
+    <h2 class="section-title reveal">Certifications &amp; courses.</h2>
+    <div class="achievements-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">
+          <div class="cert-badge cert-badge-ibm"></div>
+          <span class="cert-issuer-ibm">IBM · Coursera</span>
+        </div>
+        <div class="cert-name">Introduction to Artificial Intelligence (AI)</div>
+        <div class="cert-meta">Completed: July 5, 2025 &nbsp;·&nbsp; Course Certificate</div>
+        <span class="cert-type">AI · Machine Learning</span>
+        <a href="https://coursera.org/verify/UQ4ESBB70LB7" target="_blank" class="cert-verify">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Verify Certificate
+        </a>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">
+          <div class="cert-badge cert-badge-google"></div>
+          <span class="cert-issuer-google">Google · Coursera</span>
+        </div>
+        <div class="cert-name">Crash Course on Python</div>
+        <div class="cert-meta">Completed: July 5, 2025 &nbsp;·&nbsp; Course Certificate</div>
+        <span class="cert-type">Python · Programming</span>
+        <a href="https://coursera.org/verify/BXXZYL3W6USO" target="_blank" class="cert-verify">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Verify Certificate
+        </a>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">
+          <div class="cert-badge cert-badge-coursera"></div>
+          <span class="cert-issuer-coursera">Coursera</span>
+        </div>
+        <div class="cert-name">Getting Started with Microsoft Excel</div>
+        <div class="cert-meta">Completed: May 20, 2025 &nbsp;·&nbsp; Project Certificate</div>
+        <span class="cert-type">Excel · Data</span>
+        <a href="https://coursera.org/verify/5PN0PI554WVH" target="_blank" class="cert-verify">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Verify Certificate
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<div class="section-divider"></div>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="resume-inner">
+    <div class="section-eyebrow reveal"><span>My CV</span></div>
+    <div class="resume-grid">
+      <div class="resume-left reveal">
+        <h2 class="section-title">See my full<br/>résumé.</h2>
+        <p class="resume-desc">A complete overview of my education, experience, projects, and technical skills — everything you need to know before we connect.</p>
+        <div class="resume-highlights">
+          <div class="resume-highlight-item"><strong>Education</strong> — BSCS, UET Lahore</div>
+          <div class="resume-highlight-item"><strong>Experience</strong> — Private Tutor, 2022–Present</div>
+          <div class="resume-highlight-item"><strong>Skills</strong> — Python, C++, HTML, CSS, SQL, Git</div>
+          <div class="resume-highlight-item"><strong>Projects</strong> — 5+ deployed on Vercel &amp; GitHub</div>
+          <div class="resume-highlight-item"><strong>Certifications</strong> — IBM, Google, Coursera</div>
+        </div>
+        <div class="resume-btns">
+          <a href="Atiqa_Lohani_Resume.pdf" download class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <a href="Atiqa_Lohani_Resume.pdf" target="_blank" class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            View Online
+          </a>
+        </div>
+      </div>
+
+      <div class="resume-preview reveal">
+        <div class="resume-preview-header">
+          <div class="resume-preview-name">Atiqa Lohani</div>
+          <div class="resume-preview-badge">CV 2025</div>
+        </div>
+        <div class="resume-preview-row">
+          <div class="resume-preview-label">Role</div>
+          <div class="resume-preview-value">Front End Developer</div>
+        </div>
+        <div class="resume-preview-row">
+          <div class="resume-preview-label">Education</div>
+          <div class="resume-preview-value">BSCS · UET Lahore<br/></div>
+        </div>
+        <div class="resume-preview-row">
+          <div class="resume-preview-label">Experience</div>
+          <div class="resume-preview-value">Private Tutor<br/><span style="font-size:0.78rem;color:var(--muted)">2022 – Present</span></div>
+        </div>
+        <div class="resume-preview-row">
+          <div class="resume-preview-label">Stack</div>
+          <div class="resume-preview-value muted">Python · C++ · HTML · CSS · SQL</div>
+        </div>
+        <div class="resume-preview-row">
+          <div class="resume-preview-label">Location</div>
+          <div class="resume-preview-value muted">Lahore, Pakistan</div>
+        </div>
+        <div class="resume-preview-row">
+          <div class="resume-preview-label">Status</div>
+          <div class="resume-preview-value" style="color:#5dca8a;">Open to Internships + Job</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-outer">
+    <div class="section-eyebrow reveal"><span>Get in Touch</span></div>
+    <div class="contact-grid">
+
+      <div class="contact-left reveal">
+        <h2 class="section-title">Let's work<br/><em>together.</em></h2>
+        <p class="contact-tagline">Open to internships, collaborations, and interesting projects. Don't hesitate to reach out.</p>
+      </div>
+
+      <div class="contact-right reveal">
+        <div class="contact-row">
+          <div class="contact-row-label">Email</div>
+          <a href="mailto:atiqatariqkhanlohani@gmail.com" class="contact-row-value">
+            atiqatariqkhanlohani@gmail.com
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-label">Phone</div>
+          <a href="tel:+923107738749" class="contact-row-value">
+            0310-7738749
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-label">GitHub</div>
+          <a href="https://github.com/atiqalohani" target="_blank" class="contact-row-value">
+            github.com/atiqalohani
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/atiqakhanlohani/" target="_blank" class="contact-row-value">
+            linkedin.com/in/atiqakhanlohani
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+        <a href="mailto:atiqatariqkhanlohani@gmail.com" class="contact-send-btn">
+          Send a Message →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="max-width:1100px;margin:0 auto;padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <span>© 2025 Atiqa Lohani — Crafted with ♥ from Lahore</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="https://github.com/atiqalohani" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">GitHub</a>
+      <a href="https://www.linkedin.com/in/atiqakhanlohani/" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Stars
+const canvas = document.getElementById('stars-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createStars() {
+  stars = [];
+  for (let i = 0; i < 180; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2,
+      alpha: Math.random() * 0.6 + 0.1,
+      speed: Math.random() * 0.3 + 0.05
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(176,196,230,${s.alpha})`;
+    ctx.fill();
+    s.alpha += s.speed * 0.01 * (Math.random() > 0.5 ? 1 : -1);
+    if (s.alpha < 0.05) s.alpha = 0.05;
+    if (s.alpha > 0.75) s.alpha = 0.75;
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resize();
+createStars();
+drawStars();
+window.addEventListener('resize', () => { resize(); createStars(); });
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(el => observer.observe(el));
+
+// Trigger hero immediately
+document.querySelectorAll('#hero .reveal').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 200);
+});
+</script>
+</body>
+</html>
