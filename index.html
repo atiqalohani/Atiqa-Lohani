@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Atiqa Lohani — Front End Developer</title>
+<title>Atiqa Lohani — BSCS &amp; Coding Educator</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -17,6 +17,7 @@
     --muted: #8b9ab5;
     --border: rgba(139,154,181,0.12);
     --glow: rgba(217,79,58,0.18);
+    --gold: #d9a23a;
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
@@ -64,15 +65,16 @@
   .nav-logo span { color: var(--red); }
   .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
   }
   .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     letter-spacing: 0.04em;
     transition: color 0.2s;
+    white-space: nowrap;
   }
   .nav-links a:hover { color: var(--white); }
   .nav-cta {
@@ -99,7 +101,7 @@
     background: #000;
   }
   .hero-inner {
-    max-width: 700px;
+    max-width: 720px;
     z-index: 2;
     position: relative;
   }
@@ -141,7 +143,7 @@
   .hero-subtitle {
     font-size: 0.95rem;
     color: rgba(255,255,255,0.42);
-    max-width: 480px;
+    max-width: 520px;
     margin-bottom: 2.5rem;
     line-height: 1.75;
   }
@@ -199,9 +201,10 @@
     line-height: 1;
     z-index: 1;
   }
-  /* Achievements */
+  /* Achievements / Competitions */
   #achievements { background: var(--navy); }
-  .achievements-grid {
+  #competitions { background: var(--navy2); }
+  .achievements-grid, .competitions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
@@ -241,12 +244,14 @@
   .cert-issuer-ibm { color: #0f62fe; }
   .cert-issuer-google { color: #4285f4; }
   .cert-issuer-coursera { color: #0056d2; }
+  .cert-issuer-gold { color: var(--gold); }
   .cert-badge {
     width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
   }
   .cert-badge-ibm { background: #0f62fe; }
   .cert-badge-google { background: #34a853; }
   .cert-badge-coursera { background: #0056d2; }
+  .cert-badge-gold { background: var(--gold); }
   .cert-name {
     font-family: 'Syne', sans-serif;
     font-size: 1.05rem;
@@ -257,6 +262,11 @@
   .cert-meta {
     font-size: 0.8rem;
     color: var(--muted);
+  }
+  .cert-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
   }
   .cert-type {
     display: inline-block;
@@ -269,6 +279,11 @@
     border-radius: 3px;
     text-transform: uppercase;
     font-weight: 500;
+  }
+  .cert-type.gold {
+    background: rgba(217,162,58,0.12);
+    border-color: rgba(217,162,58,0.3);
+    color: #f0cd8a;
   }
   .cert-verify {
     display: inline-flex;
@@ -320,6 +335,14 @@
     font-weight: 700;
     line-height: 1.15;
     margin-bottom: 3.5rem;
+  }
+  .section-lead {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-top: -2.25rem;
+    margin-bottom: 3rem;
   }
 
   /* ABOUT */
@@ -386,11 +409,131 @@
   .exp-text { font-size: 0.875rem; color: var(--muted); }
   .exp-text strong { color: var(--white); font-weight: 500; }
 
+  /* TEACHING */
+  #teaching { background: var(--navy); }
+  .teaching-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3.5rem;
+  }
+  .teaching-role-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  .teaching-role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .teaching-role-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .teaching-role-period {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    white-space: nowrap;
+  }
+  .teaching-role-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+  .teaching-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .teaching-list li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .teaching-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .teaching-list li strong { color: var(--white); font-weight: 500; }
+  .fit-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .fit-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .fit-card:hover { border-color: rgba(217,79,58,0.35); transform: translateY(-2px); }
+  .fit-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .fit-card-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .fyp-card {
+    background: linear-gradient(135deg, rgba(217,79,58,0.1), var(--navy3));
+    border: 1px solid rgba(217,79,58,0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .fyp-badge {
+    align-self: flex-start;
+    display: inline-block;
+    background: rgba(217,79,58,0.18);
+    border: 1px solid rgba(217,79,58,0.4);
+    color: var(--red-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    font-weight: 600;
+    width: fit-content;
+  }
+  .fyp-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+  }
+  .fyp-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.8; max-width: 760px; }
+  .fyp-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
   /* SKILLS */
-  #skills { background: var(--navy); }
+  #skills { background: var(--navy2); }
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
   }
   .skill-group {
@@ -438,7 +581,7 @@
   }
 
   /* PROJECTS */
-  #projects { background: var(--navy2); }
+  #projects { background: var(--navy); }
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -755,16 +898,19 @@
   }
 
   /* MOBILE */
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     .nav-links { display: none; }
+  }
+  @media (max-width: 768px) {
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-inner { max-width: 100%; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
-    .achievements-grid { grid-template-columns: 1fr; }
+    .achievements-grid, .competitions-grid { grid-template-columns: 1fr; }
     .hero-watermark { font-size: 30vw; right: -10%; }
     .resume-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .teaching-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
 </style>
 </head>
@@ -777,10 +923,11 @@
   <a class="nav-logo" href="#hero">ATI<span>Q</span>A</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#teaching">Teaching</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#achievements">Achievements</a></li>
-    <li><a href="#resume">CV</a></li>
+    <li><a href="#resume"></a></li>
     <li><a href="#contact" class="nav-cta">Let's Talk →</a></li>
   </ul>
 </nav>
@@ -795,18 +942,20 @@
   <span class="hero-plus" style="top:75%;left:62%">·</span>
 
   <div class="hero-inner reveal">
-    <div class="hero-eyebrow">Computer Science Student · SQL &amp; Web Development</div>
+    <div class="hero-eyebrow">Computer Science · Coding Educator · Web &amp; AI Developer</div>
     <h1 class="hero-name">
       <span class="hero-name-first">Atiqa</span>
       <span class="hero-name-last">Lohani</span>
     </h1>
-    <p class="hero-tagline">Building AI-driven and scalable web solutions</p>
+    <p class="hero-tagline">Teaching code, building software, inspiring young learners.</p>
     <p class="hero-subtitle">
-      CS student with hands-on experience in AI and web,
-      building end-to-end applications using Python, C++, and JavaScript.
+      BSCS from UET Lahore with 3+ years of hands-on coding instruction experience.
+      I break down Python, OOP, DSA, AI, and web development into clear, engaging lessons —
+      and back it up by actually building the things I teach.
     </p>
     <div class="hero-btns">
-      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#teaching" class="btn-primary">Teaching Experience →</a>
+      <a href="#projects" class="btn-outline">View Projects →</a>
       <a href="#contact" class="btn-outline">Contact Me →</a>
     </div>
   </div>
@@ -818,42 +967,99 @@
 <section id="about">
   <div class="section-inner">
     <div class="section-eyebrow reveal"><span>About Me</span></div>
-    <h2 class="section-title reveal">Turning ideas into<br/>real software.</h2>
+    <h2 class="section-title reveal">Turning ideas into<br/>real software — and real lessons.</h2>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I'm a <strong>Computer Science student at UET University of Engineering and Technology, Lahore</strong>, currently in my 2th semester. My work spans front-end development.</p>
-        <p>I have a strong foundation in <strong>data structures, databases, and object-oriented design</strong>. I focus on delivering scalable, real-world solutions that actually ship — not just academic exercises.</p>
-        <p>Beyond coding, I am a part of AWS Management Team.</p>
-        </div>
+        <p>I'm a <strong>Computer Science from UET — University of Engineering and Technology, Lahore</strong>. My work spans front-end development, AI, and database systems.</p>
+        <p>I have a strong foundation in <strong>data structures, algorithms, databases, and object-oriented design</strong>, paired with <strong>3+ years of hands-on coding instruction</strong> — teaching Python, OOP, and database basics to students from Class 4 to 10. I focus on delivering scalable, real-world solutions that actually ship, and lessons that actually stick.</p>
+        <p>My Final Year Project, a <strong>Smart Google Classroom</strong>, was built by identifying real usability problems I experienced as a student over four years of remote learning. Beyond coding, I'm a member of the <strong>AWS Campus Management Team</strong>.</p>
+      </div>
       <div class="reveal">
         <div class="about-cards">
           <div class="about-card">
-            <div class="about-card-num">3rd</div>
-            <div class="about-card-label">Semester at UET</div>
+            <div class="about-card-num">BSCS</div>
+            <div class="about-card-label">UET</div>
           </div>
           <div class="about-card">
-            <div class="about-card-num">2yr</div>
+            <div class="about-card-num">3+yr</div>
             <div class="about-card-label">Teaching Experience</div>
           </div>
           <div class="about-card">
-            <div class="about-card-num">6+</div>
+            <div class="about-card-num">15+</div>
             <div class="about-card-label">Projects Shipped</div>
           </div>
           <div class="about-card">
             <div class="about-card-num">AWS</div>
-            <div class="about-card-label">Management Team</div>
+            <div class="about-card-label">Campus Management Team</div>
           </div>
           <div class="experience-bar">
             <div class="exp-item">
               <div class="exp-dot"></div>
-              <div class="exp-text"><strong>Teaching</strong> — 2 years of mentoring peers on programming &amp; career paths</div>
+              <div class="exp-text"><strong>Private Tutor</strong> — 3+ years teaching Math &amp; Computer Science to students from Class 4–10</div>
             </div>
             <div class="exp-item">
               <div class="exp-dot"></div>
-              <div class="exp-text"><strong>AWS Management Team</strong> — Campus cloud community Member</div>
+              <div class="exp-text"><strong>AWS Management Team</strong> — Campus cloud community member</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-text"><strong>Team Leader</strong> — Sync Crew, FAST Softec 2026 robotics competition</div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal"><span>Teaching Experience</span></div>
+    <h2 class="section-title reveal">Why I'm a strong fit<br/>for Codingal.</h2>
+
+    <div class="teaching-grid">
+      <div class="teaching-role-card reveal">
+        <div class="teaching-role-header">
+          <div class="teaching-role-title">Private Tutor — Mathematics &amp; Computer Science</div>
+          <div class="teaching-role-period">2022 – Present</div>
+        </div>
+        <div class="teaching-role-sub">Home Tutoring · Classes 4–10</div>
+        <ul class="teaching-list">
+          <li>Taught <strong>Computer Science</strong> including Python programming, OOP concepts, database basics, and MS Office applications to students from Class 4–10.</li>
+          <li>Delivered <strong>Mathematics</strong> lessons covering algebra, geometry, and calculus fundamentals.</li>
+          <li>Designed structured, <strong>curriculum-aligned lesson plans</strong> tailored to Matric, FSc, and O/A Level board preparation.</li>
+          <li>Introduced <strong>coding exercises and hands-on mini-projects</strong> to build conceptual understanding beyond rote learning.</li>
+          <li>Maintained detailed progress reports and adapted teaching methods to individual learning styles — achieving measurable grade improvements.</li>
+        </ul>
+      </div>
+
+      <div class="fit-cards reveal">
+        <div class="fit-card">
+          <div class="fit-card-title">Teaching coding is what I already do</div>
+          <div class="fit-card-desc">3+ years teaching CS and programming to students Class 4–10 — real classroom practice with curriculum design and parent communication, not just theory.</div>
+        </div>
+        <div class="fit-card">
+          <div class="fit-card-title">Deep technical foundation across the CS curriculum</div>
+          <div class="fit-card-desc">Strong coverage of DSA, AI, Software Engineering, Web &amp; Mobile Development, OS, and Networks — with real, deployed projects in each domain. Comfortable teaching Python, JavaScript, C++, and SQL.</div>
+        </div>
+        <div class="fit-card">
+          <div class="fit-card-title">Empathy for student struggles — built into my FYP</div>
+          <div class="fit-card-desc">I know exactly where students get lost and how to design better learning experiences — because I built a product around solving that exact problem.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fyp-card reveal">
+      <span class="fyp-badge">Final Year Project</span>
+      <div class="fyp-name">Smart Google Classroom — AI-Enhanced EdTech Platform</div>
+      <div class="fyp-desc">Identified and resolved critical usability, communication, and engagement issues faced by students and teachers across four years of Google Classroom use at UET. Built an AI-powered layer on top of the classroom experience — including smart assignment feedback, automated progress tracking, intelligent notifications, real-time doubt resolution, AI-generated quiz suggestions, and a student performance dashboard for teachers. Directly applicable to Codingal's mission of making coding education more effective and engaging for young learners.</div>
+      <div class="fyp-tags">
+        <span class="project-tag">Web Development</span>
+        <span class="project-tag">AI Integration</span>
+        <span class="project-tag">Software Engineering</span>
       </div>
     </div>
   </div>
@@ -873,37 +1079,57 @@
         <div class="skill-tags">
           <span class="skill-tag">Python</span>
           <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">SQL</span>
           <span class="skill-tag">C++</span>
+          <span class="skill-tag">SQL</span>
           <span class="skill-tag">HTML</span>
           <span class="skill-tag">CSS</span>
         </div>
       </div>
-      </div>
       <div class="skill-group reveal">
         <div class="skill-group-num">02</div>
-        <div class="skill-group-title">Concepts</div>
+        <div class="skill-group-title">Core CS Subjects</div>
         <div class="skill-tags">
+          <span class="skill-tag">DSA</span>
           <span class="skill-tag">OOP</span>
-          <span class="skill-tag">Data Structures</span>
+          <span class="skill-tag">AI</span>
+          <span class="skill-tag">Software Engineering</span>
+          <span class="skill-tag">Operating Systems</span>
+          <span class="skill-tag">Web Development</span>
+          <span class="skill-tag">Computer Networks</span>
+          <span class="skill-tag">Mobile App Development</span>
         </div>
       </div>
       <div class="skill-group reveal">
         <div class="skill-group-num">03</div>
-        <div class="skill-group-title">Databases &amp; Backend</div>
+        <div class="skill-group-title">Databases</div>
         <div class="skill-tags">
           <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Schema Design</span>
+          <span class="skill-tag">CRUD Operations</span>
         </div>
       </div>
       <div class="skill-group reveal">
         <div class="skill-group-num">04</div>
         <div class="skill-group-title">Tools &amp; Platforms</div>
         <div class="skill-tags">
+          <span class="skill-tag">Git</span>
           <span class="skill-tag">GitHub</span>
           <span class="skill-tag">Vercel</span>
-          <span class="skill-tag">LinkedIn</span>
           <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">MS Office</span>
+          <span class="skill-tag">Google Classroom</span>
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">GitHub Copilot</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-num">05</div>
+        <div class="skill-group-title">Teaching Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag neutral">Lesson Plan Design</span>
+          <span class="skill-tag neutral">Curriculum Mapping</span>
+          <span class="skill-tag neutral">Progress Reporting</span>
+          <span class="skill-tag neutral">Student Assessment</span>
         </div>
       </div>
     </div>
@@ -921,6 +1147,30 @@
 
       <div class="project-card reveal">
         <div class="project-header">
+          <div class="project-name">AI Study Assistant</div>
+        </div>
+        <p class="project-desc">Conversational AI assistant that answers student questions on any CS topic, generates practice questions, and provides step-by-step explanations — directly inspired by teaching experience and designed for self-paced learners.</p>
+        <span class="project-tag">Python · AI · NLP</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">DSA Visualiser</div>
+        </div>
+        <p class="project-desc">Interactive web-based visualisation tool for core data structures and algorithms — sorting, searching, linked lists, trees, and graphs — with step-by-step animation. Built to help students see what the code is actually doing.</p>
+        <span class="project-tag">HTML · CSS · JS</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Student Project Management System</div>
+        </div>
+        <p class="project-desc">Full SDLC project: requirements, design, implementation, and testing of a web-based system for managing student group projects, deadlines, submissions, and instructor feedback.</p>
+        <span class="project-tag">HTML · CSS · JS · SQL</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
           <div class="project-name">Personal Expense Tracker</div>
           <div class="project-links">
             <a href="https://github.com/atiqalohani/-Personal-Expense-Tracker-System" target="_blank" class="project-link" title="GitHub">
@@ -931,7 +1181,7 @@
             </a>
           </div>
         </div>
-        <p class="project-desc">A web-based application that helps users record, manage, analyse, and visualize their daily expenses in a simple and user-friendly way.</p>
+        <p class="project-desc">Fully functional finance tracker with expense categorisation, real-time totals, and a responsive UI — deployed live to record, manage, analyse, and visualize daily expenses.</p>
         <span class="project-tag">Web App</span>
       </div>
 
@@ -947,7 +1197,7 @@
             </a>
           </div>
         </div>
-        <p class="project-desc">Transforms your daily debugging sessions into an interactive, quest-based experience. Track issues as quests, earn XP for every fix, level up your developer profile, and compete with your team.</p>
+        <p class="project-desc">Transforms daily debugging sessions into an interactive, quest-based experience. Track issues as quests, earn XP for every fix, level up your developer profile, and compete with your team.</p>
         <span class="project-tag">Gamification</span>
       </div>
 
@@ -965,6 +1215,22 @@
         </div>
         <p class="project-desc">Quest-based debugging experience where fixing bugs earns XP. Compete with your team, level up your profile, all without leaving your workflow. Because killing bugs should feel like an achievement.</p>
         <span class="project-tag">Dev Tool</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Employee Payroll System</div>
+        </div>
+        <p class="project-desc">OOP-based payroll system applying inheritance, encapsulation, and polymorphism — a strong demonstration of the core programming concepts taught to students.</p>
+        <span class="project-tag">C++ · OOP</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">Digital Store Management System</div>
+        </div>
+        <p class="project-desc">Fully functional relational database for a digital store covering schema design, normalisation, and the complete spectrum of SQL operations.</p>
+        <span class="project-tag">SQL</span>
       </div>
 
       <div class="project-card reveal">
@@ -991,6 +1257,41 @@
         </div>
         <p class="project-desc">Classic grid-based snake game demonstrating core programming concepts — loops, conditionals, and object-oriented design through real-time game logic and user interaction.</p>
         <span class="project-tag">Game · OOP</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- COMPETITIONS -->
+<section id="competitions">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal"><span>Competitions &amp; Hackathons</span></div>
+    <h2 class="section-title reveal">Built under pressure.</h2>
+    <div class="competitions-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">
+          <div class="cert-badge cert-badge-gold"></div>
+          <span class="cert-issuer-gold">FAST Softec 2026</span>
+        </div>
+        <div class="cert-name">Line Following Robot — 3rd Position</div>
+        <div class="cert-meta">Team Sync Crew &middot; Team Leader</div>
+        <p class="cert-desc">Led a 4-member team in the Line Following Robot competition; qualified from 25 teams to the top 11 in Round 1, then placed 3rd on a highly complex final track where only 3 of 8 qualifying teams finished. Directed hardware and software refinement under time pressure — live debugging, last-minute adjustments, and team coordination on competition day.</p>
+        <span class="cert-type gold">3rd Position</span>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">
+          <div class="cert-badge cert-badge-gold"></div>
+          <span class="cert-issuer-gold">FCCU Hackathon 2026</span>
+        </div>
+        <div class="cert-name">Line Following Robot — Runner-Up</div>
+        <div class="cert-meta">2-Member Team</div>
+        <p class="cert-desc">Competed on one of the most challenging tracks — confusing loops, sharp turns, and unexpected obstacles requiring continuous code tuning until the final moments. Diagnosed and resolved a last-minute wiring disconnection and chassis failure under live competition pressure.</p>
+        <span class="cert-type gold">2nd Position</span>
       </div>
 
     </div>
@@ -1054,8 +1355,6 @@
 
 <div class="section-divider"></div>
 
-<div class="section-divider"></div>
-
 <!-- RESUME -->
 <section id="resume">
   <div class="resume-inner">
@@ -1063,12 +1362,13 @@
     <div class="resume-grid">
       <div class="resume-left reveal">
         <h2 class="section-title">See my full<br/>résumé.</h2>
-        <p class="resume-desc">A complete overview of my education, experience, projects, and technical skills — everything you need to know before we connect.</p>
+        <p class="resume-desc">A complete overview of my education, teaching experience, projects, and technical skills — everything you need to know before we connect.</p>
         <div class="resume-highlights">
-          <div class="resume-highlight-item"><strong>Education</strong> — BSCS, UET Lahore</div>
-          <div class="resume-highlight-item"><strong>Experience</strong> — Private Tutor, 2022–Present</div>
-          <div class="resume-highlight-item"><strong>Skills</strong> — Python, C++, HTML, CSS, SQL, Git</div>
-          <div class="resume-highlight-item"><strong>Projects</strong> — 5+ deployed on Vercel &amp; GitHub</div>
+          <div class="resume-highlight-item"><strong>Education</strong> — BSc Computer Science, UET Lahore (2024–2028)</div>
+          <div class="resume-highlight-item"><strong>Teaching</strong> — Private Tutor, Math &amp; CS, 2022–Present</div>
+          <div class="resume-highlight-item"><strong>Skills</strong> — Python, JavaScript, C++, SQL, HTML/CSS, Git</div>
+          <div class="resume-highlight-item"><strong>Projects</strong> — 10+ deployed on Vercel &amp; GitHub</div>
+          <div class="resume-highlight-item"><strong>Competitions</strong> — FAST Softec 2026 (3rd), FCCU Hackathon 2026 (Runner-Up)</div>
           <div class="resume-highlight-item"><strong>Certifications</strong> — IBM, Google, Coursera</div>
         </div>
       </div>
@@ -1076,23 +1376,23 @@
       <div class="resume-preview reveal">
         <div class="resume-preview-header">
           <div class="resume-preview-name">Atiqa Lohani</div>
-          <div class="resume-preview-badge">CV 2025</div>
+          <div class="resume-preview-badge">CV 2026</div>
         </div>
         <div class="resume-preview-row">
           <div class="resume-preview-label">Role</div>
-          <div class="resume-preview-value">Front End Developer</div>
+          <div class="resume-preview-value">CS Student &amp; Coding Educator</div>
         </div>
         <div class="resume-preview-row">
           <div class="resume-preview-label">Education</div>
-          <div class="resume-preview-value">BSCS · UET Lahore<br/></div>
+          <div class="resume-preview-value">BSc Computer Science<br/>UET Lahore · 2024–2028</div>
         </div>
         <div class="resume-preview-row">
           <div class="resume-preview-label">Experience</div>
-          <div class="resume-preview-value">Private Tutor<br/><span style="font-size:0.78rem;color:var(--muted)">2022 – Present</span></div>
+          <div class="resume-preview-value">Private Tutor — Math &amp; CS<br/><span style="font-size:0.78rem;color:var(--muted)">2022 – Present</span></div>
         </div>
         <div class="resume-preview-row">
           <div class="resume-preview-label">Stack</div>
-          <div class="resume-preview-value muted">Python · C++ · HTML · CSS · SQL</div>
+          <div class="resume-preview-value muted">Python · JavaScript · C++ · SQL · HTML/CSS</div>
         </div>
         <div class="resume-preview-row">
           <div class="resume-preview-label">Location</div>
@@ -1100,7 +1400,7 @@
         </div>
         <div class="resume-preview-row">
           <div class="resume-preview-label">Status</div>
-          <div class="resume-preview-value" style="color:#5dca8a;">Open to Internships + Job</div>
+          <div class="resume-preview-value" style="color:#5dca8a;">Open to Codingal Teaching Role</div>
         </div>
       </div>
     </div>
@@ -1117,10 +1417,17 @@
 
       <div class="contact-left reveal">
         <h2 class="section-title">Let's work<br/><em>together.</em></h2>
-        <p class="contact-tagline">Open to internships, collaborations, and interesting projects. Don't hesitate to reach out.</p>
+        <p class="contact-tagline">Open to coding instructor roles, internships, and interesting projects. Don't hesitate to reach out.</p>
       </div>
 
       <div class="contact-right reveal">
+        <div class="contact-row">
+          <div class="contact-row-label">Phone</div>
+          <a href="tel:+923107738749" class="contact-row-value">
+            +92 310-7738749
+            <span class="arrow">↗</span>
+          </a>
+        </div>
         <div class="contact-row">
           <div class="contact-row-label">Email</div>
           <a href="mailto:atiqatariqkhanlohani@gmail.com" class="contact-row-value">
@@ -1152,7 +1459,7 @@
 
 <footer>
   <div style="max-width:1100px;margin:0 auto;padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-    <span>© 2025 Atiqa Lohani — Crafted with ♥ from Lahore</span>
+    <span>© 2026 Atiqa Lohani — Crafted with ♥ from Lahore</span>
     <div style="display:flex;gap:1.5rem;">
       <a href="https://github.com/atiqalohani" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">GitHub</a>
       <a href="https://www.linkedin.com/in/atiqakhanlohani/" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">LinkedIn</a>
